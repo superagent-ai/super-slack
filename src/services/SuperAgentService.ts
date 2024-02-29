@@ -10,6 +10,7 @@ export class SuperAgentService {
         : `${this.BASE_URL}/agents/${this.AGENT_ID}/invoke`
     );
 
+    console.log("Retrieving answer:", ENDPOINT_URL.toString());
     try {
       const res = await fetch(ENDPOINT_URL.toString(), {
         method: "POST",
@@ -28,6 +29,8 @@ export class SuperAgentService {
       const output = data?.output;
 
       if (!res?.ok || !success || !output) {
+        console.error("Error:", res);
+
         return "I'm sorry, something went wrong! Please contact support at info@superagent.sh";
       }
 

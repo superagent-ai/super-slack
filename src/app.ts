@@ -10,7 +10,7 @@ const app = new App({
   signingSecret: process.env.SLACK_SIGNING_SECRET,
 
   logLevel: isProduction ? LogLevel.ERROR : LogLevel.DEBUG,
-  socketMode: true,
+  socketMode: !isProduction,
 });
 
 app.use(async ({ next }) => {
