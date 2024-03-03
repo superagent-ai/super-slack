@@ -1,30 +1,28 @@
-import { App, LogLevel } from "@slack/bolt";
-import { Events, SlackService } from "./services/SlackService";
-import { SuperAgentService } from "./services/SuperAgentService";
-import { isProduction } from "./utils/constants";
-import "./utils/env";
+import "dotenv/config";
+import { default as express } from "express";
 
-const app = new App({
-  token: process.env.SLACK_BOT_TOKEN,
-  appToken: process.env.SLACK_APP_TOKEN,
-  signingSecret: process.env.SLACK_SIGNING_SECRET,
+import { router } from "./routes";
+import { isValidSlackRequest } from "./utils";
 
-  logLevel: isProduction ? LogLevel.ERROR : LogLevel.DEBUG,
-  socketMode: !isProduction,
-});
+const app = express();
+app.use(
+  express.json({
+    verify: (req, _, buf) => {
+      req.rawBody = buf;
+    },
+  })
+);
+app.use(
+  express.urlencoded({
+    extended: true,
+    verify: (req, _, buf) => {
+      req.rawBody = buf;
+    },
+  })
+);
 
-app.use(async ({ next }) => {
-  await next();
-});
+app.use(isValidSlackRequest);
 
-const superAgentService = new SuperAgentService();
-const slackService = new SlackService(app, superAgentService);
+app.use(router);
 
-app.command("/help", slackService.helpCommand);
-app.event(Events["APP_MENTION"], slackService.appMention);
-
-(async () => {
-  await app.start(process.env.PORT || 3000);
-
-  console.log("⚡️ Bolt app is running!");
-})();
+export { app };
