@@ -42,31 +42,23 @@ class SlackEventsService {
         slackRequestTimestamp,
         sendMessageBody
       );
+      // send acknowledgement request to slack that we recieved the message
+      res.status(200).end();
 
-      fetch(sendMessageEndpointUrl, {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-          "x-slack-request-timestamp": slackRequestTimestamp,
-          "x-slack-signature": slackSignature,
-        },
-        body: sendMessageBody,
-      })
-        .then((response) => {
-          console.log(`Got response from ${sendMessageEndpointUrl}`);
-        })
-        .catch((error) => {
-          console.log(
-            `Error sending request to ${sendMessageEndpointUrl}`,
-            error
-          );
+      try {
+        await fetch(sendMessageEndpointUrl, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+            "x-slack-request-timestamp": slackRequestTimestamp,
+            "x-slack-signature": slackSignature,
+          },
+          body: sendMessageBody,
         });
-      await new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve(true);
-        }, 500);
-      });
-      return res.send("OK").status(200);
+        console.log("Request sent successfully!");
+      } catch (error) {
+        console.error("Error sending request:", error);
+      }
     } catch (error) {
       if (error instanceof Error) {
         await slack.chat.postMessage({
