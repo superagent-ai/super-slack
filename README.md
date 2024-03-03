@@ -54,3 +54,14 @@ npm install -g serverless
 ```bash
 serverless deploy
 ```
+
+3. Setting Events URL in Slack 
+- After deploying succesfully, copy the /events endpoint URL
+- Scroll to `Event Subscriptions`
+- Enable events
+- Click to `Subscribe to bot events`
+- Add `app_mention`
+- Set the Request URL to the lambda URL (e.g. https://example.com/events)
+- Go to `Slash commands`
+- Click to new command 
+- Set command to `/help` and Request URL to the lambda URL that ends with /commands (e.g. https://example.com/commands)
