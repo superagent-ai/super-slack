@@ -2,6 +2,7 @@
 
 This project is a Slack bot that leverages SuperAgent AI. It's built with TypeScript and deployed using AWS lambda functions (you can deploy it to anywhere by building the docker container).
 
+<img src="./public/assets/example.png" style="border-radius: 10px;">
 
 ## Deploying (Step-by-step guide)
 
@@ -65,3 +66,5 @@ serverless deploy
 - Go to `Slash commands`
 - Click to new command 
 - Set command to `/help` and Request URL to the lambda URL that ends with /commands (e.g. https://example.com/commands)
+
+
