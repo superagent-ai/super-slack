@@ -1,0 +1,25 @@
+display_information:
+  name: SuperBot 
+  description: An app that answers your questions
+  background_color: "#ffe04b"
+features:
+  app_home:
+    home_tab_enabled: false
+    messages_tab_enabled: true
+    messages_tab_read_only_enabled: false
+  bot_user:
+    display_name: Superbot 
+    always_online: true
+oauth_config:
+  scopes:
+    user:
+      - admin
+    bot:
+      - app_mentions:read
+      - channels:history
+      - chat:write
+      - commands
+settings:
+  org_deploy_enabled: true
+  socket_mode_enabled: false
+  token_rotation_enabled: false

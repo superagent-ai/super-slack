@@ -1,4 +1,4 @@
-export class SuperAgentService {
+class SuperAgentService {
   private readonly WORKFLOW_ID = process.env.SUPERAGENT_WORKFLOW_ID;
   private readonly AGENT_ID = process.env.SUPERAGENT_AGENT_ID;
   private readonly BASE_URL = process.env.SUPERAGENT_API_BASE_URL;
@@ -31,14 +31,15 @@ export class SuperAgentService {
       if (!res?.ok || !success || !output) {
         console.error("Error:", res);
 
-        return "I'm sorry, something went wrong! Please contact support at info@superagent.sh";
+        throw new Error(data);
       }
 
       return output;
     } catch (error) {
       console.error("Error:", error);
-
-      return "I'm sorry, something went wrong! Please contact support at info@superagent.sh";
+      throw new Error(error);
     }
   }
 }
+
+export { SuperAgentService };

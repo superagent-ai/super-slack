@@ -1,0 +1,48 @@
+service: slack-bot
+
+frameworkVersion: '3'
+custom:
+  dotenv: 
+    path: .env
+  serverless-offline:
+    httpPort: 3000
+  
+package: 
+  excludeDevDependencies: false
+  individually: true
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: us-east-1
+
+functions:
+  events: 
+    handler: dist/lambda/main.handler
+    events:
+      - httpApi:
+          path: /events
+          method: post   
+  commands: 
+    handler: dist/lambda/main.handler
+    events:
+      - httpApi:
+          path: /commands
+          method: post    
+  send-message: 
+    handler: dist/lambda/main.handler
+    events:
+      - httpApi:
+          path: /send-message
+          method: post    
+    timeout: 300
+  
+      
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-typescript
+  - serverless-dotenv-plugin
+  - serverless-plugin-common-excludes # this should go before serverless-plugin-include-dependencies
+
+  - serverless-plugin-include-dependencies
