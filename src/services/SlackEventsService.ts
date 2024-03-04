@@ -1,6 +1,5 @@
 import { generateSlackSignature, slack } from "../utils";
 import Express from "express";
-// import fetch from "node-fetch";
 
 interface Event {
   ts: string;
@@ -43,10 +42,9 @@ class SlackEventsService {
         sendMessageBody
       );
       // send acknowledgement request to slack that we recieved the message
-      res.status(200).end();
 
       try {
-        await fetch(sendMessageEndpointUrl, {
+        fetch(sendMessageEndpointUrl, {
           method: "post",
           headers: {
             "Content-Type": "application/json",
@@ -59,6 +57,8 @@ class SlackEventsService {
       } catch (error) {
         console.error("Error sending request:", error);
       }
+      // a hacky way to ensure the request is sent
+      await new Promise((resolve) => setTimeout(resolve, 10));
     } catch (error) {
       if (error instanceof Error) {
         await slack.chat.postMessage({
@@ -68,8 +68,7 @@ class SlackEventsService {
         });
       }
     }
-    return;
+    return res.status(200).end();
   }
 }
-
 export { SlackEventsService };
