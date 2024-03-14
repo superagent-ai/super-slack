@@ -21,7 +21,8 @@ class SlackEventsService {
         text: "I'm thinking...",
       });
 
-      const protocol = process.env.NODE_ENV === "production" ? "https" : "http";
+      const protocol = req.headers["x-forwarded-proto"] || req.secure;
+
       const sendMessageEndpointUrl = `${protocol}://${req.hostname}/send-message`;
 
       // send message in background, this is for slack's 3 second response time limit
