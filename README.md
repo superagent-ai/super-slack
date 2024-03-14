@@ -35,34 +35,29 @@ Follow these step-by-step instructions to deploy SuperBot for Slack:
    - Go to `Basic Information` -> Copy & Add the secret as `SLACK_SIGNING_SECRET` to `.env` --> Click `Install To Workspace` button
    - Go to `OAuth & Permissions` --> Copy the `Bot User OAuth Token` and add it as `SLACK_BOT_TOKEN` in .env
    - OPTIONAL: Go Back to Slack --> Click on your Profile picture --> Profile --> Click on 3 dots (in the right panel) --> Copy member ID 
-   & add it as `SLACK_ADMIN_MEMBER_ID` in .env  
+   & add it as `SLACK_ADMIN_MEMBER_ID` in .env
 
-3. **Deployment:**
-
-   #### One Click Deployments:
-
-   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/superagent-ai/superagent-slack-bot)
-
-   [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/q14UEX)
-
-   You will need to add the environment variables in the Vercel or Railway dashboard after deploying. (See Step 3) 
-   
-   -------
-   
-   <a href="./docs/deploy/aws-lambda.md">
-      <img src="./public/assets/aws-lambda.svg" alt="AWS Lambda Icon">
-   </a>
-   <br>
-   
-   -----
-   Want to deploy another platform? Build and deploy the Docker image using the following command:
-   ```bash
-   docker build -t superagent-slack-bot .
-   docker run -p 8000:8000 superagent-slack-bot
-   ```
- 
-4. **Setting Up Slack Events:**
-   - After successful deployment, copy the `/events` endpoint URL.
+3. **Setting Up Slack Events:**
+   - After successful deployment, copy the `https://<your_deployment>/events` endpoint URL.
    - Enable events in Slack's `Event Subscriptions`.
-   - Subscribe to `app_mention` events and set the Request URL to the Lambda URL.
-   - Create a new slash command `/help` and set the Request URL to the Lambda URL ending with `/commands`.
+   - Subscribe to `app_mention` events.
+   - Create a new slash command `/help` and set the Request URL to your deployment `https://<your_deployment>/events`.
+
+## Deploy on Vercel
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/superagent-ai/superagent-slack-bot)
+
+## Deploy to Railway
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/q14UEX)
+
+## Deploy on AWS
+<a href="./docs/deploy/aws-lambda.md">
+  <img src="./public/assets/aws-lambda.svg" alt="AWS Lambda Icon">
+</a>
+
+## Deploy using Docker
+Build and deploy the Docker image using the following command:
+
+```bash
+docker build -t superagent-slack-bot .
+docker run -p 8000:8000 superagent-slack-bot
+```
