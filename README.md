@@ -28,7 +28,7 @@ Follow these step-by-step instructions to deploy SuperBot for Slack:
    - Create a new API key on the [Superagent API Keys page](https://beta.superagent.sh/settings/api-keys) and 
    - Add the API Key as `SUPERAGENT_API_KEY` in .env
 
-  #### Slack Environment Variables:
+   #### Slack Environment Variables:
    - Create a Slack app on the [Slack API page](https://api.slack.com/apps?new_app=1) --> `From App Manifest` --> Select your Workspace --> Copy the [manifest.yaml](https://github.com/superagent-ai/superagent-slack-bot/blob/main/manifest.yaml) and paste it to Slack's code editor
    - Go to `Basic Information` -> Copy & Add the secret as `SLACK_SIGNING_SECRET` to `.env` --> Click `Install To Workspace` button
    - Go to `OAuth & Permissions` --> Copy the `Bot User OAuth Token` and add it as `SLACK_BOT_TOKEN` in .env
