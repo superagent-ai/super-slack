@@ -53,6 +53,13 @@ Follow these step-by-step instructions to deploy SuperBot for Slack:
       <img src="./public/assets/aws-lambda.svg" alt="AWS Lambda Icon">
    </a>
    <br>
+   
+   -----
+   Want to deploy another platform? Build and deploy the Docker image using the following command:
+   ```bash
+   docker build -t superagent-slack-bot .
+   docker run -p 8000:8000 superagent-slack-bot
+   ```
  
 5. **Setting Up Slack Events:**
    - After successful deployment, copy the `/events` endpoint URL.
