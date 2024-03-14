@@ -1,10 +1,12 @@
-## SuperBot for Slack
+<div align="center">
+	<img width="100px" src="https://github.com/homanp/superagent/assets/2464556/eb51fa38-4a2a-4c41-b348-d3c1abc04234" />
+	<h1>SuperSlack</h1>
+	<p>
+		<b>SuperBot for Slack is a powerful Slack bot that integrates with SuperAgent AI..</b>
+	</p>
+</div>
 
-SuperBot for Slack is a powerful Slack bot that integrates with SuperAgent AI. It's developed using TypeScript and can be easily deployed using AWS Lambda functions or any other containerized environment using Docker.
-
-![SuperBot Example](./public/assets/example-slack.png)
-
-### Deployment Guide
+## Deployment Guide
 
 Follow these step-by-step instructions to deploy SuperBot for Slack:
 
@@ -13,8 +15,8 @@ Follow these step-by-step instructions to deploy SuperBot for Slack:
    git clone https://github.com/superagent-ai/slack-bot
    ```
 
-3. **Set Up Environment Variables:**
-   Copy the `.env.example` file and rename it to `.env`. Fill in the following environment variables:
+2. **Set Up Environment Variables:**
+   Copy the `.env.example` file and rename it to `.env`. Fill in the environment variables:
 
    - `SUPERAGENT_AGENT_ID` or `SUPERAGENT_WORKFLOW_ID`: ID of your SuperAgent AI agent or workflow.
    - `SUPERAGENT_API_BASE_URL`: Base URL for the SuperAgent API.
@@ -33,11 +35,9 @@ Follow these step-by-step instructions to deploy SuperBot for Slack:
    - Go to `Basic Information` -> Copy & Add the secret as `SLACK_SIGNING_SECRET` to `.env` --> Click `Install To Workspace` button
    - Go to `OAuth & Permissions` --> Copy the `Bot User OAuth Token` and add it as `SLACK_BOT_TOKEN` in .env
    - OPTIONAL: Go Back to Slack --> Click on your Profile picture --> Profile --> Click on 3 dots (in the right panel) --> Copy member ID 
-   & add it as `SLACK_ADMIN_MEMBER_ID` in .env 
-   
-   
+   & add it as `SLACK_ADMIN_MEMBER_ID` in .env  
 
-4. **Deployment:**
+3. **Deployment:**
 
    #### One Click Deployments:
 
@@ -61,7 +61,7 @@ Follow these step-by-step instructions to deploy SuperBot for Slack:
    docker run -p 8000:8000 superagent-slack-bot
    ```
  
-5. **Setting Up Slack Events:**
+4. **Setting Up Slack Events:**
    - After successful deployment, copy the `/events` endpoint URL.
    - Enable events in Slack's `Event Subscriptions`.
    - Subscribe to `app_mention` events and set the Request URL to the Lambda URL.
