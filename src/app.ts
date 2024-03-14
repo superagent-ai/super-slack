@@ -21,8 +21,12 @@ app.use(
   })
 );
 
+app.get("/health", (_, res) => {
+  res.status(200).send("OK");
+});
+
 app.use(isValidSlackRequest);
 
 app.use(router);
 
-export { app };
+export default app;

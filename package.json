@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc -p .",
     "build:watch": "tsc -w -p .",
-    "start": "npm run build && node dist/app.js",
+    "start": "node dist/server/main.js",
     "dev": "NODE_ENV=development nodemon dist/app.js"
   },
   "license": "MIT",
