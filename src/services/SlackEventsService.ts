@@ -21,7 +21,8 @@ class SlackEventsService {
         text: "I'm thinking...",
       });
 
-      const sendMessageEndpointUrl = `${req.protocol}://${req.hostname}/send-message`;
+      const protocol = process.env.NODE_ENV === "production" ? "https" : "http";
+      const sendMessageEndpointUrl = `${protocol}://${req.hostname}/send-message`;
 
       // send message in background, this is for slack's 3 second response time limit
       const sendMessageBody = JSON.stringify({
@@ -53,12 +54,12 @@ class SlackEventsService {
           },
           body: sendMessageBody,
         });
-        console.log("Request sent successfully!");
+        console.log(`Request sent successfully to ${sendMessageEndpointUrl}`);
       } catch (error) {
         console.error("Error sending request:", error);
       }
       // a hacky way to ensure the request is sent
-      await new Promise((resolve) => setTimeout(resolve, 10));
+      await new Promise((resolve) => setTimeout(resolve, 50));
     } catch (error) {
       if (error instanceof Error) {
         await slack.chat.postMessage({
