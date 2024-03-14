@@ -49,13 +49,9 @@ Follow these step-by-step instructions to deploy SuperBot for Slack:
    
    -------
    
-   <a href="./docs/deploy/aws-lambda.md" style="text-decoration: none;">
-      <button style="border-radius: 4px;">
-         <img src="./public/assets/aws-lambda.svg" alt="AWS Lambda Icon" style="width:24px;height:24px;vertical-align:middle;">
-         Deploy to AWS Lambda
-      </button>
+   <a href="./docs/deploy/aws-lambda.md">
+      <img src="./public/assets/aws-lambda.svg" alt="AWS Lambda Icon">
    </a>
-   
    <br>
  
 5. **Setting Up Slack Events:**
