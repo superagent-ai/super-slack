@@ -7,7 +7,7 @@
     "build": "tsc -p .",
     "build:watch": "tsc -w -p .",
     "start": "node dist/server/main.js",
-    "dev": "NODE_ENV=development nodemon dist/app.js"
+    "dev": "nodemon dist/server/main.js"
   },
   "license": "MIT",
   "dependencies": {
