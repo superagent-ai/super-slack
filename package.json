@@ -1,7 +1,7 @@
 {
-  "name": "getting-started-typescript",
+  "name": "super-slack",
   "version": "1.0.0",
-  "description": "Bolt getting started app in TypeScript",
+  "description": "A chatbot for Slack powered by Superagent AI",
   "main": "dist/app.js",
   "scripts": {
     "build": "tsc -p .",
