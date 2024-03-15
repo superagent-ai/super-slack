@@ -11,6 +11,13 @@ class SuperAgentService {
     );
 
     console.log("Retrieving answer:", ENDPOINT_URL.toString());
+
+    const reqBody = JSON.stringify({
+      enableStreaming: false,
+      input,
+      sessionId: `slack-${threadId}`,
+    });
+
     try {
       const res = await fetch(ENDPOINT_URL.toString(), {
         method: "POST",
@@ -18,18 +25,14 @@ class SuperAgentService {
           "Content-Type": "application/json",
           Authorization: `Bearer ${process.env.SUPERAGENT_API_KEY}`,
         },
-        body: JSON.stringify({
-          enableStreaming: false,
-          input,
-          sessionId: `slack-${threadId}`,
-        }),
+        body: reqBody,
       });
       const { success, data } = await res.json();
 
       const output = data?.output;
 
       if (!res?.ok || !success || !output) {
-        console.error("Error:", res);
+        console.error("Error:", res, "Body:", reqBody);
 
         throw new Error(data);
       }
