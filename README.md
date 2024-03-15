@@ -12,7 +12,7 @@ Follow these step-by-step instructions to deploy SuperBot for Slack:
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/superagent-ai/slack-bot
+   git clone https://github.com/superagent-ai/super-slack
    ```
 
 2. **Set Up Environment Variables:**
@@ -31,7 +31,7 @@ Follow these step-by-step instructions to deploy SuperBot for Slack:
    - Add the API Key as `SUPERAGENT_API_KEY` in .env
 
    #### Slack Environment Variables:
-   - Create a Slack app on the [Slack API page](https://api.slack.com/apps?new_app=1) --> `From App Manifest` --> Select your Workspace --> Copy the [manifest.yaml](https://github.com/superagent-ai/superagent-slack-bot/blob/main/manifest.yaml) and paste it to Slack's code editor
+   - Create a Slack app on the [Slack API page](https://api.slack.com/apps?new_app=1) --> `From App Manifest` --> Select your Workspace --> Copy the [manifest.yaml](https://github.com/superagent-ai/super-slack/blob/main/manifest.yaml) and paste it to Slack's code editor
    - Go to `Basic Information` -> Copy & Add the secret as `SLACK_SIGNING_SECRET` to `.env` --> Click `Install To Workspace` button
    - Go to `OAuth & Permissions` --> Copy the `Bot User OAuth Token` and add it as `SLACK_BOT_TOKEN` in .env
    - OPTIONAL: Go Back to Slack --> Click on your Profile picture --> Profile --> Click on 3 dots (in the right panel) --> Copy member ID 
@@ -44,7 +44,7 @@ Follow these step-by-step instructions to deploy SuperBot for Slack:
    - Create a new slash command `/help` and set the Request URL to your deployment `https://<your_deployment>/events`.
 
 ## Deploy on Vercel
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/superagent-ai/superagent-slack-bot)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/superagent-ai/super-slack)
 
 ## Deploy to Railway
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/q14UEX)
@@ -58,6 +58,6 @@ Follow these step-by-step instructions to deploy SuperBot for Slack:
 Build and deploy the Docker image using the following command:
 
 ```bash
-docker build -t superagent-slack-bot .
-docker run -p 8000:8000 superagent-slack-bot
+docker build -t super-slack .
+docker run -p 8000:8000 super-slack
 ```
