@@ -32,5 +32,6 @@ settings:
   event_subscriptions:
     request_url: https://<your_deployment>/events
     bot_events:
-      - message.channels
       - app_mention
+      - message.channels
+      - message.groups
