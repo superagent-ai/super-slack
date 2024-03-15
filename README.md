@@ -39,9 +39,8 @@ Follow these step-by-step instructions to deploy SuperBot for Slack:
 
 3. **Setting Up Slack Events:**
    - After successful deployment, copy the `https://<your_deployment>/events` endpoint URL.
-   - Enable events in Slack's `Event Subscriptions`.
-   - Subscribe to `app_mention` events.
-   - Create a new slash command `/help` and set the Request URL to your deployment `https://<your_deployment>/events`.
+   - Go to `Event Subscriptions` and set `Request URL` to your deployment URL.
+   - Go to `Slash Commands`, click edit button of `/help` command and set `Request URL` to your `https://<your_deployment>/commands` URL. 
 
 ## Deploy on Vercel
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/superagent-ai/super-slack)
