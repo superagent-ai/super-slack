@@ -10,6 +10,12 @@ features:
   bot_user:
     display_name: Superbot 
     always_online: true
+  slash_commands:
+    - command: /help
+      description: User manual of SuperBot
+      usage_hint: /help superbot
+      url: https://<your_deployment>/commands
+  
 oauth_config:
   scopes:
     user:
@@ -23,3 +29,8 @@ settings:
   org_deploy_enabled: true
   socket_mode_enabled: false
   token_rotation_enabled: false
+  event_subscriptions:
+    request_url: https://<your_deployment>/events
+    bot_events:
+      - message.channels
+      - app_mention
