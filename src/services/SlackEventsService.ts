@@ -10,7 +10,7 @@ interface Event {
 }
 
 class SlackEventsService {
-  async appMention(req: Express.Request, res: Express.Response) {
+  async answerQuestion(req: Express.Request, res: Express.Response) {
     const event = req.body.event as Event;
     const { channel, ts } = event;
 

@@ -14,9 +14,14 @@ async function eventsController(req: Express.Request, res: Express.Response) {
   }
 
   if (requestType === "event_callback") {
-    const eventType = body.event.type;
-    if (eventType === "app_mention")
-      return await eventsService.appMention(req, res);
+    const eventType = body?.event?.type;
+
+    const isFollowUp =
+      eventType === "message" && body?.event?.thread_ts && !body?.event?.bot_id;
+    const isAppMention = eventType === "app_mention";
+
+    if (isAppMention || isFollowUp)
+      return await eventsService.answerQuestion(req, res);
   }
 
   return res.send("OK").status(200);
