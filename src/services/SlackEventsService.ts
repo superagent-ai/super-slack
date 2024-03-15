@@ -18,7 +18,7 @@ class SlackEventsService {
       const message = await slack.chat.postMessage({
         channel,
         thread_ts: ts,
-        text: "I'm thinking...",
+        text: "Typing...",
       });
 
       const protocol = req.headers["x-forwarded-proto"] || req.secure;
