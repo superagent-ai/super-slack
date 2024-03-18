@@ -18,11 +18,12 @@ async function eventsController(req: Express.Request, res: Express.Response) {
 
     const eventType = body?.event?.type;
 
+    const isBotMessage = body?.event?.sub_type === "bot_message";
     const isFollowUp = eventType === "message" && body?.event?.thread_ts;
     const isAppMention = eventType === "app_mention";
     const isDm = eventType === "message" && body?.event?.channel_type === "im";
 
-    if (isAppMention || isFollowUp || isDm)
+    if (isAppMention || isFollowUp || isDm || !isBotMessage)
       return await eventsService.answerQuestion(req, res);
   }
 
