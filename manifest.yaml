@@ -25,6 +25,10 @@ oauth_config:
       - channels:history
       - chat:write
       - commands
+      - groups:history
+      - im:history
+
+
 settings:
   org_deploy_enabled: true
   socket_mode_enabled: false
@@ -35,3 +39,5 @@ settings:
       - app_mention
       - message.channels
       - message.groups
+      - message.im
+
