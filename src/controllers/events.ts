@@ -11,20 +11,18 @@ async function eventsController(req: Express.Request, res: Express.Response) {
       challenge: body.challenge,
     });
   }
+  console.log("RECIEVED REQUEST EVENTS:", body?.event);
 
+  const isBotMessage = !!body?.event?.bot_id;
   // listening for only non-bot messages
-  if (requestType === "event_callback" && !body?.event?.message?.bot_id) {
-    console.log("RECIEVED REQUEST EVENTS", body);
-
+  if (requestType === "event_callback" && !isBotMessage) {
     const eventType = body?.event?.type;
 
-    const isBotMessage = body?.event?.bot_id;
-    console.log("BOT ID", isBotMessage);
     const isFollowUp = eventType === "message" && body?.event?.thread_ts;
     const isAppMention = eventType === "app_mention";
     const isDm = eventType === "message" && body?.event?.channel_type === "im";
 
-    if (isAppMention || isFollowUp || isDm || !isBotMessage)
+    if (isAppMention || isFollowUp || isDm)
       return await eventsService.answerQuestion(req, res);
   }
 
